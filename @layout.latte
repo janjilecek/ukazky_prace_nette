@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Edited">
+    <meta name="robots" content="{$robots}" n:ifset="$robots">
+
+    <title>Edited</title>
+
+    <link rel="stylesheet" href="{$basePath}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="{$basePath}/css/screen.css" type="text/css">
+    <link rel="stylesheet" href="{$basePath}/css/table.css" type="text/css">
+    <link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="{$basePath}/js/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="{$basePath}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{$basePath}/js/nette.ajax.js"></script>
+    <link href="{$basePath}/css/bootstrap-switch.css" rel="stylesheet">
+    <script src="{$basePath}/js/bootstrap-switch.js"></script>
+    <link href="{$basePath}/css/bootstrap-slider.css" rel="stylesheet">
+    <script src="{$basePath}/js/bootstrap-slider.js"></script>
+
+    {block head}{/block}
+    <script src="/js/classie.js"></script>
+
+</head>
+
+<body>
+<header class="smaller fixed basic">
+    <div class="mainPanel">
+        <div id ="topTitle">
+            <div id="submain">
+                <div class="container clearfix">
+
+                    <div class="navbarInner">
+                        <nav class="mainNavbar">
+                            <ul class = "block-menu" n:inner-foreach="$menuItems as $item => $link">
+                                <li {ifCurrent $link} {/ifCurrent}>
+                                    <a n:href="$link" class="three-d">
+                            <span class="three-d-box">
+                                <span class="front">{$item}</span>
+                                <span class="back">{$item}</span>
+
+                            </span>
+                                    </a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <h3 class="mainTitle"><a href = "{$presenter->link('Homepage:')}">Smite<span style="color:#CE2837">Edited</span>.</a></h3>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="container">
+            <div id="bottomTitle">
+                <div id="subtitle">subtitle edited</div>
+                <div id="pageTitle">{$mainName}</div>
+            </div>
+        </div>
+
+    </div>
+
+</header>
+<div class="container mainText">
+    {include #content}
+
+</div>
+</body>
+<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+<script type="text/javascript" src="{$basePath}/js/live-form-validation.js"></script>
+<script>
+
+    $('.BSswitch').bootstrapSwitch('state', true);
+
+
+    $('#CheckBoxValue').text($("#TheCheckBox").bootstrapSwitch('state'));
+
+    $('#TheCheckBox').on('switchChange.bootstrapSwitch', function () {
+
+        $("#CheckBoxValue").text($('#TheCheckBox').bootstrapSwitch('state'));
+    });
+
+    $('.probeProbe').bootstrapSwitch('state', true);
+
+    $('.probeProbe').on('switchChange.bootstrapSwitch', function (event, state) {
+
+        alert(this);
+        alert(event);
+        alert(state);
+    });
+
+    $('#toggleSwitches ').click(function () {
+        $('.BSswitch ').bootstrapSwitch('toggleDisabled');
+        if ($('.BSswitch ').attr('disabled')) {
+            $(this).text('Enable All Switches ');
+        } else {
+            $(this).text('Disable All Switches ');
+        }
+    });
+
+    // With JQuery
+    $("#ex13").slider({
+        ticks: [1, 2, 3, 4, 5],
+        ticks_labels: ['1', '2', '3', '4', '5'],
+        ticks_snap_bounds: 0,
+        value: 1
+    });
+</script>
+</html>
